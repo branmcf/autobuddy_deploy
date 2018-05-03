@@ -31,7 +31,6 @@ export class GarageComponent implements OnInit {
   public garageNameAppointment: string;
   public garageIdAppointment: number;
   public carAdded: Car;
-  public garage_name:string;
   private garageId: number;
   @Input() public cars: Car[];
 
@@ -87,16 +86,11 @@ export class GarageComponent implements OnInit {
     this.userRepository.getUserType().subscribe(data => {
       console.log('data:', data);
       this.type = data.type;
-      
       if (data.type === 'garage') {
         this.carRepository.showGarages().subscribe(res => {
           console.log('cars in garage: ', res);
           this.cars = res.vehicles;
         });
-        this.garageRepository.getGarageByUser(data.id).subscribe(datatest => {
-          console.log("random : " ,datatest);
-          this.garage_name = datatest[0].garage_name;
-        })
       }
       if (data.type === 'customer') {
         this.carRepository.showVehicle().subscribe(res => {
@@ -112,7 +106,6 @@ export class GarageComponent implements OnInit {
     this.userRepository.getUserInfo().subscribe(user => {
       console.log('user:', user[0]);
       this.user = user[0];
-
     });
     this.garageRepository.getGarages().subscribe(garages => {
       console.log('garages: ', garages);

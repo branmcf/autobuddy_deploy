@@ -46,11 +46,3 @@
   flex: 1 0 20%; /* explanation below */
   margin: 5px;
 }
-
-.vh-87 {
-  height: 87vh;
-}
-
-.of-scroll {
-  overflow: scroll;
-}

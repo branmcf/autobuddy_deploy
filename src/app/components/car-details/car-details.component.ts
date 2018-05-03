@@ -36,6 +36,33 @@ export class CarDetailsComponent implements OnInit {
   ngOnInit() {
     this.date = new Date();
     this.activedRoute.paramMap.subscribe((params: any) => {
+      this.userRepository.getUserType().subscribe(test => {
+        if(test.type ==='customer') {
+          this.carRepository.showOneVehicle(params.get('vehicle_id')).subscribe(data => {
+            console.log('this is the car');
+            console.log(data);
+            this.car = data[0];
+            this.garageRepository.getGarageByUser(this.car.garage_id).subscribe(dataTwo=> {
+              console.log('garage');
+              console.log(dataTwo);
+              this.garageName=dataTwo[0].garage_name;
+            })
+          });
+        }
+        if(test.type ==='garage') {
+          this.carRepository.showOneVehicleGarage(params.get('vehicle_id')).subscribe(data => {
+            console.log('this is the car');
+            console.log(data);
+            this.car = data[0];
+            this.garageRepository.getGarageByUser(this.car.garage_id).subscribe(dataTwo=> {
+              console.log('garage');
+              console.log(dataTwo);
+              this.garageName=dataTwo[0].garage_name;
+            })
+          });
+        }
+
+      })
       this.carRepository.showOneVehicle(params.get('vehicle_id')).subscribe(data => {
         console.log('this is the car');
         console.log(data);

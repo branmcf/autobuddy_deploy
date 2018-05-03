@@ -55,6 +55,12 @@ export class CarRepository extends RepositoryService<Car> {
       catchError(this.handleException)
     )
   }
+  public showOneVehicleGarage(vehicle_id:number): Observable<Car>{
+    const url = this.endPoint + '/showOneVehicleGarage';
+    return this.httpClient.get(`${url}/${vehicle_id}`,this.httpOptions).pipe(
+      catchError(this.handleException)
+    )
+  }
   public showRepairsForUser(vehicle_id:number): Observable<Car>{
     const url = this.endPoint + '/showRepairsForUser';
     return this.httpClient.get(`${url}/${vehicle_id}`,this.httpOptions).pipe(
