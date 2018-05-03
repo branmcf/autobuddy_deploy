@@ -1,0 +1,190 @@
+<!-- Loop through garages -->
+<div *ngIf="type!=='garage'" class="container garage-container border dashboard mt-2 mb-2">
+  <div class="row">
+    <div class="col-md-4 parent" *ngFor="let garage of garages">
+      <div class="card garage-card bg-color mt-2 mb-2 child">
+        <div class="card-body">
+          <div>
+            <button type="button" data-toggle="modal" data-target="#scheduleModal" class="close mr-2" aria-label="Close" style="color: red;"
+              (click)="scheduleAppointment(garage.garage_name, garage.garage_id)">
+              +
+            </button>
+            <button type="button" data-toggle="modal" data-target="#carModal" class="close" aria-label="Close" style="color: green;"
+            (click)="garageSelected(garage.garage_id)"
+              >
+              +
+            </button>
+
+          </div>
+
+          <h5 class="card-title">{{garage.garage_name}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Located at {{garage.garage_location}}</h6>
+          <h6 class="card-subtitle mb-2 text-muted text-truncate">
+            {{garage.garage_description}}
+          </h6>
+          <img class="card-img car-card-image" src="../../../assets/images/garage2.jpg" alt="Card image">
+        </div>
+      </div>
+      <!-- Schedule Modal -->
+      <div class="modal fade" id="scheduleModal" tabindex="-1" role="dialog" aria-labelledby="scheduleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="scheduleModalLabel">{{garageName}}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+              <div class="form-group row">
+                <label for="example-date-input" class="col-2 col-form-label">Date</label>
+                <div class="col-10">
+                  <input [(ngModel)]="appointment" class="form-control" type="date" value="2011-08-19" id="example-date-input">
+                  <span class="glyphicon glyphicon-list-alt"></span>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="example-time-input" class="col-2 col-form-label">Time</label>
+                <div class="col-10">
+                  <input [(ngModel)]="appointment_time" class="form-control" type="time" value="13:45:00" id="example-time-input">
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" (click)="submitAppointment()">Create Appointment</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Car Modal -->
+      <div class="modal fade" id="carModal" tabindex="-1" role="dialog" aria-labelledby="carModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="carModalLabel">{{garageName}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <label for="car-select">
+                  Select a car
+                </label>
+                  <select #selectElem
+                  id="car-select" (change)="setNewCar(selectElem.value)"
+                  *ngIf="cars?.length > 0">
+                      <option  *ngFor="let car of cars">{{car.vehicle_make}}</option>
+                      </select>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="addCarToGarage(garage.garage_id)">Add Car</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Cars -->
+<div class="container border dashboard mt-2 mb-2 white-bg">
+  <div class="row">
+      <div class="col-md-12">
+          <h1 class="d-inline">My Cars</h1>
+          <br>
+          <button *ngIf="type!=='garage'" type="button" class="btn btn-success d-inline" data-toggle="modal" data-target="#exampleModal">Add Car</button>
+          <br>
+          <br>
+          <div class="clearfix">
+          </div>
+      </div>
+  </div>
+  <hr class="no-margin-top">
+  <div class="row">
+
+    <!-- ADD CAR TO GARAGE FUNCTION IS HERE -->
+    <!-- <button (click) = "addCarToGarage()">ADD CAR TO GARAGE</button> -->
+    <!-- ADD CAR TO GARAGE FUNCTION IS HERE -->
+
+    <div class="col-md-4" *ngFor="let car of cars">
+      <!-- <a class="no-decoration" routerLink="/garage/{{ car.id }}"> -->
+      <div [routerLink]="'/car/'+car.vehicle_id" class="card garage-card car-card child mt-3">
+        <div class="card-body">
+          <button type="button" class="close" aria-label="Close" style="color: red;" (click)="open($event, car)">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h5 class="card-title">{{ car.vehicle_make }} {{ car.vehicle_model }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Checked in: {{ car.checkInDate | date }}</h6>
+          <img class="card-img car-card-image" src="../../assets/images/car-outline.png" alt="Card image">
+          <p class="card-text">Service Manager: {{ car.vehicle_manager }}</p>
+          <p class="card-text">VIN: {{ car.vehicle_vin }}</p>
+          <p class="card-text">Owner: {{ user.full_name }}</p>
+          <p class="card-text" style="text-align: center;">Progress</p>
+          <div class="progress" style="margin-bottom:5%">
+            <div class="progress-bar" role="progressbar" [style.width]="car.progress + '%'" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--END ROW -->
+  <app-part-orders [parts]="orders"></app-part-orders>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Checking In New Car</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form name="myForm" ng-submit="submitForm()" id="myForm">
+          <div class="form-group row">
+            <label for="carMake" class="col-sm-2 col-form-label">Make:</label>
+            <div class="col-sm-10">
+              <input [(ngModel)]="newCar.vehicle_make" type="text" class="form-control add-car-row" id="carMake" placeholder="" name="carMake">
+            </div>
+            <label for="carModel" class="col-sm-2 col-form-label">Model:</label>
+            <div class="col-sm-10">
+              <input [(ngModel)]="newCar.vehicle_model" type="text" class="form-control add-car-row" id="carModel" placeholder="" name="carModel">
+            </div>
+            <label for="carYear" class="col-sm-2 col-form-label">Year:</label>
+            <div class="col-sm-10">
+              <input [(ngModel)]="newCar.vehicle_year" type="text" class="form-control add-car-row" id="carYear" placeholder="" name="carYear">
+            </div>
+            <label for="carColor" class="col-sm-2 col-form-label">Color:</label>
+            <div class="col-sm-10">
+              <input [(ngModel)]="newCar.vehicle_color" type="text" class="form-control add-car-row" id="carColor" placeholder="" name="carColor">
+            </div>
+            <label for="carVin" class="col-sm-2 col-form-label">VIN:</label>
+            <div class="col-sm-10">
+              <input [(ngModel)]="newCar.vehicle_vin" type="text" class="form-control add-car-row" id="carVin" placeholder="" name="carVin">
+            </div>
+
+            <label for="carManager" class="col-sm-2 col-form-label">Manager:</label>
+            <div class="col-sm-10">
+              <input [(ngModel)]="newCar.vehicle_manager" type="text" class="form-control add-car-row" id="carManager" placeholder="" name="carManager">
+            </div>
+            <label for="carInitialDiagnosis" class="col-sm-2 col-form-label">Initial Diagnosis:</label>
+            <div class="col-sm-10">
+              <textarea [(ngModel)]="newCar.vehicle_init_diagnosis" type="text" class="form-control add-car-row ta-no-resize" rows="5"
+                id="carInitialDiagnosis" placeholder="" name="carInitialDiagnosis"></textarea>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="addCar()" data-dismiss="modal">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>

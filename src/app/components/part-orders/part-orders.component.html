@@ -1,0 +1,102 @@
+<!-- MODAL -->
+<div class="modal fade" id="addPart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+          <!-- Order Part Header -->
+          Order Part
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form">
+          <!-- Name of Part -->
+          <div class="ml-1 mb-2 row">
+              <input type="text" class="form-control d-block col-md-8" id="name"
+              name="name" [(ngModel)]="newPart.part_name" placeholder="Part Name">
+          </div>
+          <!-- vehicle make model -->
+          <div class="ml-1 mb-2 row">
+            <input type="text" class="form-control d-block col-md-8" id="makeModel"
+            name="makeModel" [(ngModel)]="newPart.vehicle_make_model" placeholder="Make/Model">
+          </div>
+
+
+          <!-- Serial Number -->
+          <div class="ml-1 mb-2 row">
+              <input type="number" class="form-control col-md-8" id="serialNumber"
+              name="serialNumber" [(ngModel)]="newPart.part_serial_number" placeholder="Enter Serial Number">
+          </div>
+         <!-- Customer Name -->
+         <div class="ml-1 mb-2 row">
+              <input type="number" class="form-control d-block col-md-8" id="customer"
+              name="customer" [(ngModel)]="newPart.customer" placeholder="Customer ID">
+          </div>
+
+          <!-- status -->
+          <!-- <div class="input-group form-control">
+            <select [(ngModel)]="newPart.status">
+              <option [value]="status" *ngFor="let status of ['Ordered','Delivering','In Inventory']">
+                {{status}}
+              </option>
+            </select>
+          </div> -->
+          <!-- Garage ID -->
+
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <button data-dismiss="modal"type="button" class="btn btn-success text-white submit"
+        (click)="addPart()"
+        >Submit Repair</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- part orders table -->
+<div class = "container no-padding-left">
+  <div class = "row">
+    <div class = "mt-2 col-md-12">
+      <h1 class="d-inline">My Orders</h1>
+      <br>
+      <button *ngIf="!garageUser" type="button" class="mb-2 d-inline btn btn-success text-white" data-toggle="modal" data-target="#addPart">
+        Order Part
+      </button>
+      <h1 *ngIf="!parts.length"> You have no parts ordered</h1>
+      <table *ngIf="parts.length > 0"class="table" id="ordersTable">
+        <thead>
+          <tr>
+            <th scope="col">Part Name</th>
+            <th scope="col">Vehicle Make/Model</th>
+            <th scope="col">Customer ID</th>
+            <th scope="col">Serial Number</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let part of parts; let i =index">
+            <th scope="row"><img (click)="edit[i]=!edit[i]"src="assets/images/editImage.png"/> {{part.part_name}}</th>
+            <td>{{part.vehicle_make_model}}</td>
+            <td>{{part.customer}}</td>
+            <td>{{part.part_serial_number}}</td>
+            <td *ngIf="edit[i]">
+              <select (change)="changeStatus(part.part_id,$event.target.value)"[(ngModel)]="newPart.part_status">
+                <option></option>
+                <option (value) = "status"*ngFor="let status of ['Ordered','Delivering','In Inventory']">
+                  {{status}}
+                </option>
+              </select>
+            </td>
+            <td *ngIf="!edit[i]">{{part.part_status}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

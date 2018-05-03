@@ -1,0 +1,29 @@
+<div class="Aligner login-aligner">
+  <div class="Aligner-item login-aligner-item">
+    <div class="card one-hundred-precent-height login-card border round-edges">
+      <div class="card-body login-card-body">
+        <h1 class="card-title text-center pb-2 open-sans">Login</h1>
+        <form name="loginform">
+          <div class="form-group">
+            <input id="CompanyEmail" type="email" name="email" [(ngModel)]="email" class="form-control" pattern="[a-zA-Z0-9.-]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+              required #CompanyEmail="ngModel" placeholder="Email" />
+
+            <div *ngIf="CompanyEmail.invalid && (CompanyEmail.dirty || CompanyEmail.touched)" class="alert alert-danger">
+              <div *ngIf="CompanyEmail?.errors.required"> Email is required. </div>
+              <div *ngIf="CompanyEmail.errors && CompanyEmail?.errors.pattern"> Email is invalid </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input [(ngModel)]="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+          </div>
+          <div class = "form-group">
+              <label for="isGarage">Garage</label>
+              <input type="checkbox" [checked]="isGarage" (change)="isGarage = !isGarage" />
+          </div>
+          <button type="button" class="btn submit-login-btn" (click)="submitLogin()" [routerLink]="['/garage']">Submit</button>
+        </form>
+        <p class="form-paragraph">Don't have an account? Sign up <a [routerLink]="['/signup']">here</a>!</p>
+      </div>
+    </div>
+  </div>
+</div>

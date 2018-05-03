@@ -1,0 +1,131 @@
+<button type="button" class="btn btn-success text-dark" data-toggle="modal" data-target="#exampleModalLong">
+  Add Repair
+</button>
+
+<div *ngFor = "let bubble of inProgressRepairs" class = "circle" [style.left]="bubble.repair_x_cord + 'px'" [style.top]="bubble.repair_y_cord + 'px'" [style.background]="'red'">
+
+</div>
+<div *ngFor = "let bubble of completeRepairs" class = "circle" [style.left]="bubble.repair_x_cord + 'px'" [style.top]="bubble.repair_y_cord + 'px'" [style.background]="'green'">
+
+</div>
+<app-progress id="progressbar" [progress]="progress"></app-progress>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+          <!-- Car name for the title -->
+          Buggie V4
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form">
+          <!-- Title of repair -->
+          <div class="ml-1 row">
+              <input type="text" class="form-control d-block col-md-8" id="title"
+              name="title" [(ngModel)]="newRepair.repair_title" value="repair.repair_title" placeholder="Repair Title">
+          </div>
+
+          <div class="ml-1 mt-2 row">
+            <input type="number" class="form-control d-block col-md-8" id="cost"
+            name="cost" [(ngModel)]="newRepair.cost" value="repair.cost" placeholder="Cost">
+          </div>
+
+
+          <!-- Parts -->
+          <pre>{{part |json}}</pre>
+          <div class="input-group ml-1 mb-2 mr-sm-2 mt-2 row">
+            <!-- selecting from list of available parst -->
+              <!-- <input type="text" class="form-control col-md-8" id="part"
+              name="part" [(ngModel)]="part" placeholder="Part ex: spring"> -->
+                <label for = "part">Part: </label>
+              <select name="part" [(ngModel)] = "part">
+                <option *ngFor = "let optionPart of parts"  [ngValue]="optionPart">
+                  {{optionPart.part_name}}
+                </option>
+              </select>
+
+            <div class="input-group-prepend">
+              <button type="submit" class="input-group-text btn btn-primary"
+              (click)="addPart()" >+</button>
+            </div>
+          </div>
+          <div *ngFor="let part of newRepair.parts">
+                <span class="form-control d-block p-2 part-color part text-dark col-md-8 ml-1">{{part.part_name}}</span>
+          </div>
+
+          <!-- Notes -->
+          <textarea placeholder="Enter Notes"class="form-control ml-1" id="repair_notes" rows="3" name="repair_notes" [(ngModel)]="newRepair.repair_notes"></textarea>
+
+          <!-- Choose where repair is located-->
+          <button (click) = "crosshairCursor = true"class = "btn btn-primary ml-1 mt-2">Choose location of repair</button>
+          <div  *ngIf="crosshair"class = "circle2" [ngStyle]="{'display': crosshairCursor == true ? 'block' : 'none'}"[style.background]="'red'" [style.left]="crosshairX + 'px'" [style.top]="crosshairY + 'px'"></div>
+          <img [ngStyle]="{'cursor': crosshairCursor == true ? 'crosshair' : 'default'}" (click)="onMousedown($event); crosshair=true"class = "chooseSpot" src = "assets/images/car-outline.png"/>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn cancel text-white" data-dismiss="modal">Cancel</button>
+        <button data-dismiss="modal"type="button" class="btn text-white submit"
+        (click)="addRepair()"
+        >Submit Repair</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="navigationTabs">
+  <ul class="nav nav-tabs">
+    <li class="nav-item col">
+      <a class="nav-link active bg-primary text-white" role="tab" data-toggle="tab" href="#inProgress">In Progress</a>
+    </li>
+    <li class="nav-item col">
+      <a class="nav-link bg-success text-white" role="tab" data-toggle="tab" href="#completed">Completed</a>
+    </li>
+  </ul>
+  <div class="clearfix"></div>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active tableContainer container" id="inProgress">
+      <table class="table">
+        <tbody >
+          <tr *ngFor="let repair of inProgressRepairs; let i =index"[attr.date-index]="i">
+            <td>
+              <p class = "d-inline-block">{{repair.repair_title}}</p>
+              <input  (change)="markComplete(repair.repair_id)" type= "checkbox"/>
+              <img (click)="noteVisible[i] = !noteVisible[i]" class="d-inline-block downArrow" src="assets/images/downArrow.png">
+              <div id="note" *ngIf="noteVisible[i]" >
+                <span class="underline">Note <span style="float:right;margin-right:1vw" class="underline d-inline ">{{repair.repair_date }}</span>
+                </span>
+                <p>{{repair.repair_notes}}</p>
+              </div>
+            </td>
+            <div class="clearfix"></div>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+    <div role="tabpanel" class="tab-pane tableContainer container" id="completed">
+      <table class="table">
+
+        <tbody>
+          <tr *ngFor="let repair of completeRepairs; let i =index"[attr.date-index]="i">
+            <td>
+              <p class = "d-inline-block">{{repair.repair_title}}</p>
+              <img (click)="noteVisible[i] = !noteVisible[i]" class="d-inline-block downArrow" src="assets/images/downArrow.png">
+              <div id="note" *ngIf="noteVisible[i]" >
+                <span class="underline">Note <span style="float:right;margin-right:1vw" class="underline d-inline ">{{repair.date | date: 'shortDate'}}</span>
+                </span>
+                <p>{{repair.repair_notes}}</p>
+              </div>
+            </td>
+            <div class="clearfix"></div>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+</div>

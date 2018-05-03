@@ -1,0 +1,190 @@
+/* .red-bg {
+  background-color: red;
+}
+
+.blue-bg {
+  background-color: blue;
+}
+
+.pink-bg {
+  background-color: pink;
+} */
+
+/* .sign-up-card {
+  height:80%;
+  max-width: 100%;
+} */
+
+/* .login-btn {
+  background: transparent;
+  border: 1px solid #151E3F;
+  min-width: 8vw;
+}
+
+.login-btn:hover {
+  background: #FFFFFF;
+  border: 1px solid #151E3F;
+  min-width: 8vw;
+} */
+
+.signup-btn {
+  background: #44AF69;
+  color: #FFFFFF;
+  max-width: 50%;
+  min-width: 25%;
+  margin: 0 auto;
+}
+
+.signup-btn:hover {
+  background: #2C7043;
+  color: #FFFFFF;
+}
+
+.landing-row-main {
+  height: 85vh;
+}
+
+.ab-yellow-text {
+  color: #FAB840;
+}
+
+.ab-green-text {
+  color: #44AF69
+}
+
+.landing-h1 {
+  font-size: 3.5rem;
+}
+
+.login-btn {
+  background: transparent;
+  border: 1px solid #151E3F;
+  min-width: 8vw;
+}
+
+.login-btn:hover {
+  background: #000000;
+  color: #ffffff;
+  min-width: 8vw;
+}
+
+
+/* landing */
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 5vh; /* Set the fixed height of the footer here */
+  line-height: 5vh; /* Vertically center the text there */
+  /* background-color: #e6e5e1; */
+  text-align: center;
+  color: #000000;
+}
+#landingPage{
+  height:100vh;
+}
+main {
+  background: #ECE9E6; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-repeat: no-repeat;
+  overflow: scroll;
+  background-image: url("/assets/images/zigzag-road-crop.png");
+  height: 100vh;
+  border-bottom:1px solid lightgrey;
+}
+
+.open-sans {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.Aligner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Aligner-item {
+  max-width: 50%;
+}
+
+.vertical-align {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+}
+
+.one-hundred-precent-height {
+  height: 100%;
+}
+
+.navy-text {
+  color: #151E3F !important;
+}
+
+.ab-yellow-text {
+  color: #FAB840;
+}
+
+.ab-green-text {
+  color: #44AF69
+}
+
+.form-paragraph {
+  margin-top: 2%;
+}
+
+.col-6{
+  margin-top:35vh;
+}
+
+/* About Page */
+
+.about{
+  background:white;
+  margin:auto 0;
+  border-bottom:1px solid lightgrey;
+
+}
+.about .col-md-12{
+  text-align: center;
+  margin-top:5vh;
+}
+.about .col-md-4{
+  padding-top:5vh;
+  padding-bottom:5vh;
+
+}
+
+.about .col-md-4 p{
+  color:black;
+  margin:0;
+  text-align: justify;
+}
+.about .image{
+  width:20vw;
+  padding-top:10vh;
+  padding-bottom:10vh;
+}
+.aboutTwo{
+  background: white;
+}
+
+.about .row {
+  margin-bottom:0;
+  margin-left:5vw;
+  margin-right:5vw;
+}
+
+.aboutTwo .row{
+  margin-left:5vw;
+  margin-right:5vw;
+  margin-bottom:0;
+}
+.card{
+  transition: all .2s linear;
+}
+.card:hover{
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}

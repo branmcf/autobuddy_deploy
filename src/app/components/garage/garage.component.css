@@ -1,0 +1,50 @@
+.car-card-image {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.garage-container {
+  background-color: white;
+}
+
+.car-card {
+  background-color: #E5E5E7;
+}
+
+.bg-color {
+  background-color: #E5E5E7;
+}
+
+.garage-card {
+  width: 18rem;
+  margin-left: auto;
+  margin-right: auto;
+  transition: all .2s linear;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.car-card {
+  width: 18rem;
+  margin-left: auto;
+  margin-right: auto;
+  transition: all .2s linear;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.garage-card:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.add-car-row {
+  margin-bottom: 2%;
+}
+
+.parent {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.child {
+  flex: 1 0 20%; /* explanation below */
+  margin: 5px;
+}

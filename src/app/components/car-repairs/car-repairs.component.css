@@ -1,0 +1,139 @@
+/* Repair Tabs */
+.col{
+  padding:0;
+}
+.nav-tabs .nav-item a{
+  border-radius: 20px 20px 0px 0px;
+
+}
+.nav-link{
+  filter:grayscale(70%)
+}
+.active{
+  filter:grayscale(0%);
+  border-color:none;
+}
+.nav-tabs .nav-item{
+  text-align: center;
+  display: inline-block;
+}
+
+.container{
+  padding:0;
+}
+#navigationTabs{
+
+  padding:0;
+  height:80vh;
+}
+/* repair table */
+
+.table{
+  background:lightgrey;
+  margin:0;
+}
+
+td{
+  border-top:1px solid lightgrey;
+  border-bottom:1px solid lightgrey;
+  border-collapse:collapse;
+  background:white;
+}
+td p, .downArrow{
+  margin: .5vw;
+}
+td p{
+  color: #717171;
+}
+.downArrow{
+  height: 12%;
+  float: right;
+
+}
+
+/* Note */
+#note{
+  border-top: 1px solid lightgrey;
+}
+.underline{
+  border-bottom: 1px solid black;
+}
+p{
+  font-family:Roboto;
+}
+
+/* Add Button */
+
+.btn-success{
+  position: absolute;
+  right: 30vw;
+  top:8vh;
+}
+ /*
+  Modal Css - SAM
+ */
+ .repair {
+  background-color: rgba(102, 255, 51, 0.4);
+  box-shadow: 0 0 0 1px rgba(57, 230, 0, 0.75);
+}
+
+.repair:hover {
+  background-color: #90EE90;
+}
+
+.modal-dialog{
+  overflow-y: initial !important
+}
+.modal-body{
+  height: 250px;
+  overflow-y: auto;
+}
+
+.part-color {
+  background-color: #D3D3D3;
+}
+
+.part {
+  margin-bottom: 0.5em;
+}
+
+.cancel {
+  background-color:grey;
+}
+
+.submit {
+  background-color: rgb(20, 194, 20)
+}
+
+#progressbar{
+  position: relative;
+  right: 50vw;
+  top:75vh;
+}
+
+/* css for choosing hot spot on car from form */
+
+.chooseSpot{
+  display: block;
+  max-width: 100%;
+  padding:1vw;
+}
+
+.circle{
+  position:fixed;
+  background:radial-gradient(red,darkred,black);
+  width:3vw;
+  height:3vw;
+  border-radius:  50%;
+}
+.circle2{
+  position:relative;
+  background:radial-gradient(red,darkred,black);
+  width:3vw;
+  height:3vw;
+  border-radius:  50%;
+}
+
+.view-height-87 {
+  view-height: 87vh;
+}

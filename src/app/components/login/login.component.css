@@ -1,0 +1,72 @@
+.login-aligner {
+  height: 85vh;
+}
+.login-aligner-item {
+  min-height: 30%;
+  width: 30%;
+}
+
+.login-card {
+  background: #fafafa;
+}
+
+.login-card-body {
+  /* padding-bottom: */
+}
+
+.submit-login-btn {
+  background: #44AF69;
+  color: #FFFFFF;
+}
+
+.submit-login-btn:hover {
+  background: #2C7043;
+  color: #FFFFFF;
+}
+/*
+body {
+  background-image: url("/assets/images/zigzag-road-crop.png");
+} */
+
+.card {
+  /* background-color: #FAB840; */
+  background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+/* .card:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+} */
+
+.round-edges {
+  border-radius: 25px;
+}
+
+input, textarea {
+  flex: 1;
+  padding: 0.7em;
+  border: 1px solid rgba(206, 212,219);
+  /* border-bottom: 1px solid black; */
+  border-radius: 0.2em;
+  background-color: white;
+  color: black;
+}
+
+textarea {
+  border: 0.1em solid black;
+
+}
+/* input:focus, textarea:focus {
+  background-color:  #FAB840;
+  color: white;
+} */
+
+input::placeholder, textarea::placeholder {
+  color: white;
+}
+
+.open-sans {
+  font-family: 'Open Sans', sans-serif;
+}

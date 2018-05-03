@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand-md bg-white nav">
+  <a class="navbar-brand navy-text" [routerLink]="['/']">
+      <img alt="Brand" src="./assets/images/ab-logo.png" height="35px" width="160px">
+    </a>
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  <header class="collapse navbar-collapse" id="navbarNav">
+
+    <ul class="navbar-nav ml-auto">
+        <app-hamburger class="mr-3"></app-hamburger>
+    </ul>
+  </header>
+</nav>
+
+
+<router-outlet></router-outlet>
+

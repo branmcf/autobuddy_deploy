@@ -1,0 +1,13 @@
+<div class="wrapper" (mouseleave)="openNav($event)" >
+    <div class="contents">
+        <div class="inner">
+            <button *ngIf="isLoggedIn" [class]="nav"  [routerLink]="['/garage']"><span class = "mask"></span>Garage </button>
+            <button *ngIf="isLoggedIn" [class]="nav" type="submit" [routerLink]="['/']"><span class = "mask"></span>Logout</button>
+            <button *ngIf="!isLoggedIn" [class]="nav"type="submit" [routerLink]="['/signup']"><span class = "mask"></span>Signup</button>
+            <button *ngIf="!isLoggedIn" [class]="nav" type="submit" [routerLink]="['/login']"><span class = "mask"></span>Login</button>
+        </div>
+    </div>
+    <span class="label">
+    <img (mouseenter)="openNav($event)"  alt="Menu" src="../../../assets/images/menu.png" class="hamburger mr-10" >
+  </span>
+</div>

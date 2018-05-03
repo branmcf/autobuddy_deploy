@@ -1,0 +1,13 @@
+<div *ngIf="car"class="container-fluid">
+  <div class="mainRow row">
+    <div class="col-9">
+      <h1 id="garageLink"><span [routerLink]="'/garage'">My Garage: {{garageName}}</span><span [ngStyle]="{'color': favorited==true? '#ffeb3b' :'black'}" (click)="favorite()"class = "star"></span></h1>
+      <h3> <span class="carType">Car:</span> {{car.vehicle_make}} {{car.vehicle_model}}</h3>
+      <h3> <span class="checkedIn">Checked In:</span> {{car.checkedIn | date:'shortDate'}}</h3>
+      <div class = "carContainer">
+        <img id="carPhoto"src = "assets/images/car-outline.png">
+      </div>
+    </div>
+    <app-car-repairs class="view-height-87"  [car]="car" [inProgressRepairs]="inProgressRepairs"[completeRepairs]="completedRepairs"class="carRepairs col"></app-car-repairs>
+  </div>
+</div>

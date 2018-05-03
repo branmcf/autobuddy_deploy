@@ -1,0 +1,74 @@
+.signup-aligner {
+  height: 80vh;
+}
+.signup-aligner-item {
+  min-height: 30%;
+  width: 30%;
+}
+
+.signup-card {
+  background: #fafafa;
+}
+
+.signup-card-body {
+  padding-bottom: 0%;
+}
+
+.submit-signup-btn {
+  background: #44AF69;
+  color: #FFFFFF;
+}
+
+.submit-signup-btn:hover {
+  background: #2C7043;
+  color: #FFFFFF;
+}
+
+.card {
+  background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+/* .card:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+} */
+
+.round-edges {
+  border-radius: 25px;
+}
+
+/*  Trying input style */
+
+input, textarea {
+  flex: 1;
+  padding: 0.7em;
+  border: 1px solid rgba(206, 212,219);
+  /* border-bottom: 0.1em solid white; */
+  border-radius: 0.2em;
+  background-color: white;
+  color: black;
+}
+
+textarea {
+  border: 1px solid rgba(206, 212,219);
+
+}
+input:focus, textarea:focus {
+  /* background-color:  #ECE9E6; */
+  background-color:  white;
+  color: black;
+}
+
+input::placeholder, textarea::placeholder {
+  color: grey;
+}
+
+.open-sans {
+  font-family: 'Open Sans', sans-serif;
+}
+
+textarea {
+  resize: none;
+}
