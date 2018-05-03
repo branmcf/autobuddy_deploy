@@ -63,10 +63,12 @@ textarea {
   color: white;
 } */
 
-input::placeholder, textarea::placeholder {
-  color: white;
-}
 
 .open-sans {
   font-family: 'Open Sans', sans-serif;
+}
+
+::placeholder {
+  color:grey;
+  opacity:1;
 }

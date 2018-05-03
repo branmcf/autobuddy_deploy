@@ -68,7 +68,7 @@
       <button *ngIf="!garageUser" type="button" class="mb-2 d-inline btn btn-success text-white" data-toggle="modal" data-target="#addPart">
         Order Part
       </button>
-      <h1 *ngIf="!parts.length"> You have no parts ordered</h1>
+      <h6 class="text-muted"*ngIf="!parts.length"> <i>You have no parts ordered</i></h6>
       <table *ngIf="parts.length > 0"class="table" id="ordersTable">
         <thead>
           <tr>
@@ -81,7 +81,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let part of parts; let i =index">
-            <th scope="row"><img (click)="edit[i]=!edit[i]"src="assets/images/editImage.png"/> {{part.part_name}}</th>
+            <th scope="row"><img *ngIf = "userType != 'customer'"(click)="edit[i]=!edit[i]"src="assets/images/editImage.png"/> {{part.part_name}}</th>
             <td>{{part.vehicle_make_model}}</td>
             <td>{{part.customer}}</td>
             <td>{{part.part_serial_number}}</td>

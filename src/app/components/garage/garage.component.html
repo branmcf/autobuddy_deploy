@@ -1,5 +1,5 @@
 <!-- Loop through garages -->
-<div *ngIf="type!=='garage'" class="container garage-container border dashboard mt-2 mb-2">
+<div *ngIf="type=='customer' " class="container garage-container border dashboard mt-2 mb-2">
   <div class="row">
     <div class="col-md-4 parent" *ngFor="let garage of garages">
       <div class="card garage-card bg-color mt-2 mb-2 child">
@@ -7,12 +7,13 @@
           <div>
             <button type="button" data-toggle="modal" data-target="#scheduleModal" class="close mr-2" aria-label="Close" style="color: red;"
               (click)="scheduleAppointment(garage.garage_name, garage.garage_id)">
-              +
+              <span style="font-size: 12px">Book an Appointment </span>+
             </button>
+          <br>
             <button type="button" data-toggle="modal" data-target="#carModal" class="close" aria-label="Close" style="color: green;"
             (click)="garageSelected(garage.garage_id)"
               >
-              +
+              <span style="font-size: 12px">Select A Garage</span> +
             </button>
 
           </div>
@@ -22,7 +23,7 @@
           <h6 class="card-subtitle mb-2 text-muted text-truncate">
             {{garage.garage_description}}
           </h6>
-          <img class="card-img car-card-image" src="../../../assets/images/garage2.jpg" alt="Card image">
+          <img class="card-img car-card-image" src="../../../assets/images/garage.jpg" alt="Card image">
         </div>
       </div>
       <!-- Schedule Modal -->
@@ -54,7 +55,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" (click)="submitAppointment()">Create Appointment</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal"(click)="submitAppointment()">Create Appointment</button>
             </div>
           </div>
         </div>
@@ -82,7 +83,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" (click)="addCarToGarage(garage.garage_id)">Add Car</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"(click)="addCarToGarage(garage.garage_id)">Add Car</button>
               </div>
             </div>
           </div>
@@ -93,7 +94,23 @@
 </div>
 
 <!-- Cars -->
-<div class="container border dashboard mt-2 mb-2 white-bg">
+<div class="container border dashboard mt-2 mb-2 white-bg vh-87 of-scroll">
+    <div class = "row">
+      <div class = "col-md-12">
+        <h1>{{garage_name}}</h1>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <!-- <h1 class="d-inline">{{}}</h1> -->
+            <br>
+            <button *ngIf="type!=='garage'" type="button" class="btn btn-success d-inline" data-toggle="modal" data-target="#exampleModal">Add Car</button>
+            <br>
+            <br>
+            <div class="clearfix">
+            </div>
+        </div>
+    </div>
   <div class="row">
       <div class="col-md-12">
           <h1 class="d-inline">My Cars</h1>
@@ -122,19 +139,17 @@
           <h5 class="card-title">{{ car.vehicle_make }} {{ car.vehicle_model }}</h5>
           <h6 class="card-subtitle mb-2 text-muted">Checked in: {{ car.checkInDate | date }}</h6>
           <img class="card-img car-card-image" src="../../assets/images/car-outline.png" alt="Card image">
-          <p class="card-text">Service Manager: {{ car.vehicle_manager }}</p>
+          <!-- <p class="card-text">Service Manager: {{ car.vehicle_manager }}</p> -->
           <p class="card-text">VIN: {{ car.vehicle_vin }}</p>
           <p class="card-text">Owner: {{ user.full_name }}</p>
           <p class="card-text" style="text-align: center;">Progress</p>
-          <div class="progress" style="margin-bottom:5%">
-            <div class="progress-bar" role="progressbar" [style.width]="car.progress + '%'" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
+
         </div>
       </div>
     </div>
   </div>
   <!--END ROW -->
-  <app-part-orders [parts]="orders"></app-part-orders>
+  <app-part-orders [userType]="type"  [parts]="orders"></app-part-orders>
 </div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -170,10 +185,10 @@
               <input [(ngModel)]="newCar.vehicle_vin" type="text" class="form-control add-car-row" id="carVin" placeholder="" name="carVin">
             </div>
 
-            <label for="carManager" class="col-sm-2 col-form-label">Manager:</label>
+            <!-- <label for="carManager" class="col-sm-2 col-form-label">Manager:</label>
             <div class="col-sm-10">
               <input [(ngModel)]="newCar.vehicle_manager" type="text" class="form-control add-car-row" id="carManager" placeholder="" name="carManager">
-            </div>
+            </div> -->
             <label for="carInitialDiagnosis" class="col-sm-2 col-form-label">Initial Diagnosis:</label>
             <div class="col-sm-10">
               <textarea [(ngModel)]="newCar.vehicle_init_diagnosis" type="text" class="form-control add-car-row ta-no-resize" rows="5"
